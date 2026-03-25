@@ -5,6 +5,17 @@
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimjs/nim-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nimjs/nim-ui/issues"
+  },
+  "homepage": "https://github.com/nimjs/nim-ui#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "components",
     "dist",

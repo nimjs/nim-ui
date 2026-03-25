@@ -17,7 +17,9 @@
     "typecheck": "turbo run typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "changeset publish"
+    "release:packages": "pnpm -r --filter \"./packages/*\" --if-present run build",
+    "release:preflight": "node ./scripts/release-preflight.mjs",
+    "release": "pnpm release:preflight && pnpm release:packages && changeset publish"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

@@ -4,6 +4,17 @@
   "description": "CLI foundation for Nim UI project initialization and component scaffolding.",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nimjs/nim-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nimjs/nim-ui/issues"
+  },
+  "homepage": "https://github.com/nimjs/nim-ui#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "src/templates",

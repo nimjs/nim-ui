@@ -239,6 +239,11 @@ Releases are managed with Changesets.
 3. The release workflow creates or updates a release PR.
 4. Merging the release PR versions packages and publishes to npm.
 
+Before the very first publish, make sure the npm scope exists and provide an
+automation token as `NPM_TOKEN`. npm trusted publishing can take over after the
+packages already exist on npm and each package has a trusted publisher
+configured.
+
 Why this model works well for OSS:
 
 - release intent is reviewed in git
