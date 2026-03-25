@@ -1,0 +1,32 @@
+{
+  "name": "@nim-ui/cli",
+  "version": "0.0.0",
+  "description": "CLI foundation for Nim UI project initialization and component scaffolding.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "src/templates",
+    "README.md"
+  ],
+  "bin": {
+    "nim-ui": "./dist/index.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm --target node20 --clean",
+    "clean": "rm -rf dist coverage",
+    "dev": "tsup src/index.ts --dts --format esm --target node20 --watch",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .ts",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  }
+}

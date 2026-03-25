@@ -1,0 +1,64 @@
+{
+  "name": "@nim-ui/ui",
+  "version": "0.0.0",
+  "description": "React UI components for Nim UI.",
+  "license": "MIT",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src/styles/index.css",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/components/button/index.d.ts",
+      "import": "./dist/components/button/index.mjs",
+      "require": "./dist/components/button/index.js"
+    },
+    "./input": {
+      "types": "./dist/components/input/index.d.ts",
+      "import": "./dist/components/input/index.mjs",
+      "require": "./dist/components/input/index.js"
+    },
+    "./card": {
+      "types": "./dist/components/card/index.d.ts",
+      "import": "./dist/components/card/index.mjs",
+      "require": "./dist/components/card/index.js"
+    },
+    "./badge": {
+      "types": "./dist/components/badge/index.d.ts",
+      "import": "./dist/components/badge/index.mjs",
+      "require": "./dist/components/badge/index.js"
+    },
+    "./styles.css": "./src/styles/index.css"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --clean --external react,react-dom",
+    "clean": "rm -rf dist coverage",
+    "dev": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --watch --external react,react-dom",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .ts,.tsx",
+    "test": "vitest run",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@nim-ui/tokens": "workspace:*",
+    "@nim-ui/utils": "workspace:*",
+    "class-variance-authority": "^0.7.1"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

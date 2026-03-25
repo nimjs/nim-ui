@@ -1,0 +1,33 @@
+{
+  "name": "@nim-ui/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens and theme primitives for Nim UI.",
+  "license": "MIT",
+  "sideEffects": [
+    "./src/css/variables.css"
+  ],
+  "files": [
+    "dist",
+    "src/css/variables.css",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./src/css/variables.css"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs --clean",
+    "clean": "rm -rf dist coverage",
+    "dev": "tsup src/index.ts --dts --format esm,cjs --watch",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .ts",
+    "test": "vitest run",
+    "typecheck": "tsc --project tsconfig.json --noEmit"
+  }
+}

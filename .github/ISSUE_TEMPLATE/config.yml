@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support and usage questions
+    url: https://github.com/nimjs/nim-ui/discussions
+    about: Please use Discussions for questions and usage support.
+  - name: Security vulnerability
+    url: https://github.com/nimjs/nim-ui/security/advisories/new
+    about: Report suspected vulnerabilities privately.

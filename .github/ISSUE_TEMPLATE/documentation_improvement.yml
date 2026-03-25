@@ -1,0 +1,25 @@
+name: Documentation improvement
+description: Suggest a docs clarification, missing example, or onboarding fix.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Affected docs area
+      placeholder: Page, file, or route.
+    validations:
+      required: true
+  - type: textarea
+    id: issue
+    attributes:
+      label: What needs improvement?
+      placeholder: Explain what was unclear, missing, or misleading.
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested improvement
+      placeholder: Proposed wording, example, or structure.

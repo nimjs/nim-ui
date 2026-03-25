@@ -1,0 +1,23 @@
+# dependencies
+node_modules
+
+# build artifacts
+.turbo
+dist
+coverage
+.next
+out
+
+# environment
+.env
+.env.*
+!.env.example
+
+# editor / OS
+.DS_Store
+.idea
+.vscode
+
+# logs
+*.log
+pnpm-debug.log*

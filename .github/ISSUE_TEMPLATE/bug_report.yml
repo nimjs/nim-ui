@@ -1,0 +1,35 @@
+name: Bug report
+description: Report a reproducible defect or regression.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve Nim UI. Please include a minimal reproduction when possible.
+  - type: input
+    id: package
+    attributes:
+      label: Affected package
+      placeholder: "@nim-ui/ui"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      placeholder: Describe the bug and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      placeholder: Steps, code sample, or repository link.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Node, package manager, browser, OS, framework version.

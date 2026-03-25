@@ -1,0 +1,30 @@
+{
+  "extends": "../../packages/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@nim-ui/tokens": [
+        "../../packages/tokens/src/index.ts"
+      ],
+      "@nim-ui/ui": [
+        "../../packages/ui/src/index.ts"
+      ],
+      "@nim-ui/utils": [
+        "../../packages/utils/src/index.ts"
+      ]
+    },
+    "jsx": "preserve"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

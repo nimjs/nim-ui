@@ -1,0 +1,6 @@
+* @nimjs/maintainers
+/apps/docs/ @nimjs/docs
+/packages/ui/ @nimjs/maintainers
+/packages/tokens/ @nimjs/maintainers
+/packages/cli/ @nimjs/maintainers
+/.github/ @nimjs/maintainers

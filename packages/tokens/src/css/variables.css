@@ -1,0 +1,71 @@
+:root,
+[data-theme='light'] {
+  --color-brand-black: #200101;
+  --color-brand-deep: #640e02;
+  --color-brand-red: #941102;
+  --color-brand-red-strong: #b41902;
+  --color-brand-amber: #854508;
+
+  --color-accent-ember: #c65b2c;
+  --color-accent-flame: #d97706;
+  --color-accent-glow: #f3e7de;
+
+  --color-neutral-white: #ffffff;
+  --color-neutral-50: #fcfafa;
+  --color-neutral-100: #f7f1f0;
+  --color-neutral-200: #e9dedd;
+  --color-neutral-300: #d4c1bf;
+  --color-neutral-400: #aa8a86;
+  --color-neutral-500: #7b5c59;
+  --color-neutral-600: #573b38;
+  --color-neutral-700: #3b211e;
+  --color-neutral-800: #2a0c0b;
+  --color-neutral-900: #200101;
+
+  --color-semantic-danger: #b41902;
+  --color-semantic-warning: #854508;
+  --color-semantic-success: #1f6b57;
+  --color-semantic-info: #640e02;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  --background: var(--color-neutral-white);
+  --foreground: var(--color-neutral-900);
+  --card: var(--color-neutral-white);
+  --card-foreground: var(--color-neutral-900);
+  --muted: var(--color-neutral-100);
+  --muted-foreground: var(--color-neutral-600);
+  --border: var(--color-neutral-200);
+  --input: var(--color-neutral-300);
+  --primary: var(--color-brand-red-strong);
+  --primary-foreground: var(--color-neutral-white);
+  --secondary: var(--color-neutral-100);
+  --secondary-foreground: var(--color-neutral-900);
+  --accent: var(--color-accent-glow);
+  --accent-foreground: var(--color-brand-deep);
+  --ring: var(--color-brand-red);
+  --destructive: var(--color-semantic-danger);
+  --destructive-foreground: var(--color-neutral-white);
+}
+
+[data-theme='dark'] {
+  --background: var(--color-neutral-900);
+  --foreground: var(--color-neutral-white);
+  --card: var(--color-neutral-800);
+  --card-foreground: var(--color-neutral-white);
+  --muted: var(--color-neutral-700);
+  --muted-foreground: var(--color-neutral-300);
+  --border: var(--color-neutral-700);
+  --input: var(--color-neutral-600);
+  --primary: var(--color-accent-ember);
+  --primary-foreground: var(--color-neutral-white);
+  --secondary: var(--color-neutral-800);
+  --secondary-foreground: var(--color-neutral-white);
+  --accent: var(--color-brand-deep);
+  --accent-foreground: var(--color-neutral-white);
+  --ring: var(--color-accent-flame);
+  --destructive: var(--color-semantic-danger);
+  --destructive-foreground: var(--color-neutral-white);
+}
