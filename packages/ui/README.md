@@ -16,6 +16,7 @@ Design goals:
 - accessible defaults
 - no circular dependencies
 - straightforward contributor ergonomics
+- registry-friendly component boundaries for docs and CLI integration
 
 When adding a new component:
 

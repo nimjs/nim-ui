@@ -1,10 +1,16 @@
-import type { ComponentPage } from '../types';
+import { createComponentPage, defineComponentMeta } from '../types';
 
-export const buttonPage: ComponentPage = {
-  slug: 'button',
+export const meta = defineComponentMeta({
   title: 'Button',
   description:
     'Buttons provide semantic variants and size options with accessible focus styles and SSR-safe rendering.',
+  tokens: ['primary', 'primary-foreground', 'radius', 'ring', 'secondary', 'border'],
+  dependencies: ['utils', 'tokens'],
+  registry: 'button',
+});
+
+export const buttonPage = createComponentPage(meta, {
+  slug: 'button',
   eyebrow: 'Component',
   preview: 'button',
   code: `import { Button } from '@nim-ui/ui';\n\nexport function Example() {\n  return (\n    <div className="flex gap-3">\n      <Button>Primary</Button>\n      <Button variant="secondary">Secondary</Button>\n      <Button variant="outline">Outline</Button>\n    </div>\n  );\n}`,
@@ -16,4 +22,4 @@ export const buttonPage: ComponentPage = {
       ],
     },
   ],
-};
+});

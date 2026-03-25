@@ -1,26 +1,24 @@
 {
-  "name": "@nim-ui/tokens",
+  "name": "@nim-ui/registry",
   "version": "0.0.0",
-  "description": "Design tokens and theme primitives for Nim UI.",
+  "description": "Component registry manifests and typed helpers for Nim UI.",
   "license": "MIT",
-  "sideEffects": [
-    "./src/css/variables.css"
-  ],
+  "type": "module",
+  "sideEffects": false,
   "files": [
+    "components",
     "dist",
-    "src/css/variables.css",
     "README.md"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./styles.css": "./src/css/variables.css"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
   },
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --dts --format esm,cjs --clean",

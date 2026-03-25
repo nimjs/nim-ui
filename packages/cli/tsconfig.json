@@ -1,7 +1,10 @@
 {
   "extends": "../tsconfig/node.json",
   "compilerOptions": {
-    "rootDir": "src",
+    "baseUrl": ".",
+    "paths": {
+      "@nim-ui/registry": ["../registry/src/index.ts"]
+    },
     "outDir": "dist"
   },
   "include": ["src/**/*.ts", "src/**/*.json"]

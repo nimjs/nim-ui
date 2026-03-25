@@ -6,12 +6,13 @@
     "build": "next build",
     "clean": "rm -rf .next coverage",
     "dev": "next dev",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint . --ext .ts,.tsx",
+    "lint": "eslint app components content lib mdx-components.tsx --ext .ts,.tsx",
     "start": "next start",
     "test": "vitest run --passWithNoTests",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "typecheck": "next typegen && tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@nim-ui/registry": "workspace:*",
     "@nim-ui/tokens": "workspace:*",
     "@nim-ui/ui": "workspace:*",
     "@nim-ui/utils": "workspace:*",

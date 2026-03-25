@@ -5,6 +5,7 @@ Next.js App Router docs and demo application for Nim UI.
 Goals:
 
 - show the path from tokens to semantic CSS variables to UI components
+- show registry metadata such as dependencies and token usage
 - keep documentation close to the code that maintainers ship
 - make content easy to extend without changing routing architecture
 - provide a polished demo surface for open-source adoption

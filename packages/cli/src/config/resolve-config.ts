@@ -1,48 +1,66 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-import type { NimUiConfig } from './types';
+import jiti from 'jiti';
 
-const CONFIG_FILE_NAME = 'nim-ui.config.json';
+import type { NimUiResolvedConfig, NimUiUserConfig } from './types';
 
-export const defaultConfig: NimUiConfig = {
-  registry: 'https://registry.example.com/nim-ui/manifest.json',
-  componentsDir: 'src/components',
-  style: 'default',
-  tsx: true,
-  tailwind: {
-    config: 'tailwind.config.ts',
-    css: 'src/app/globals.css',
-    cssVariables: true,
-  },
-  aliases: {
-    components: '@/components',
-    utils: '@/lib/utils',
-  },
+export const CONFIG_FILE_NAMES = [
+  'nim-ui.config.ts',
+  'nim-ui.config.mts',
+  'nim-ui.config.js',
+  'nim-ui.config.mjs',
+] as const;
+
+export const defaultConfig: NimUiResolvedConfig = {
+  componentsDir: 'src/components/ui',
+  configPath: null,
+  tokens: true,
 };
 
-export function resolveConfig(cwd: string): NimUiConfig {
-  const configPath = join(cwd, CONFIG_FILE_NAME);
+function findConfigPath(cwd: string) {
+  return (
+    CONFIG_FILE_NAMES.map((fileName) => join(cwd, fileName)).find((filePath) =>
+      existsSync(filePath),
+    ) ?? null
+  );
+}
 
-  if (!existsSync(configPath)) {
+function validateConfig(config: NimUiUserConfig, configPath: string) {
+  if (
+    config.componentsDir !== undefined &&
+    (typeof config.componentsDir !== 'string' || config.componentsDir.trim() === '')
+  ) {
+    throw new Error(
+      `Invalid nim-ui config at ${configPath}: "componentsDir" must be a non-empty string.`,
+    );
+  }
+
+  if (config.tokens !== undefined && typeof config.tokens !== 'boolean') {
+    throw new Error(
+      `Invalid nim-ui config at ${configPath}: "tokens" must be a boolean.`,
+    );
+  }
+}
+
+export async function resolveConfig(cwd: string): Promise<NimUiResolvedConfig> {
+  const configPath = findConfigPath(cwd);
+
+  if (!configPath) {
     return defaultConfig;
   }
 
-  const fileContents = readFileSync(configPath, 'utf8');
-  const parsed = JSON.parse(fileContents) as Partial<NimUiConfig>;
+  const load = jiti(cwd, {
+    interopDefault: true,
+    moduleCache: false,
+  });
+  const loaded = (await load.import(configPath)) as NimUiUserConfig;
+
+  validateConfig(loaded, configPath);
 
   return {
-    ...defaultConfig,
-    ...parsed,
-    tailwind: {
-      ...defaultConfig.tailwind,
-      ...parsed.tailwind,
-    },
-    aliases: {
-      ...defaultConfig.aliases,
-      ...parsed.aliases,
-    },
+    componentsDir: loaded.componentsDir ?? defaultConfig.componentsDir,
+    configPath,
+    tokens: loaded.tokens ?? defaultConfig.tokens,
   };
 }
-
-export { CONFIG_FILE_NAME };

@@ -23,7 +23,14 @@ function main() {
       runInit(workingDirectory);
       return;
     case 'add':
-      runAdd(workingDirectory, parsed.positional[0]);
+      void runAdd(workingDirectory, parsed.positional[0]).catch((cause: unknown) => {
+        error(
+          cause instanceof Error
+            ? cause.message
+            : 'Unexpected error while adding component.',
+        );
+        process.exitCode = 1;
+      });
       return;
     case '--help':
     case '-h':

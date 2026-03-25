@@ -22,7 +22,7 @@
     "build": "tsup src/index.ts --dts --format esm,cjs --clean",
     "clean": "rm -rf dist coverage",
     "dev": "tsup src/index.ts --dts --format esm,cjs --watch",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .ts",
+    "lint": "eslint src --ext .ts",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },

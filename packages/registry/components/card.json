@@ -1,0 +1,8 @@
+{
+  "name": "card",
+  "files": ["card.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "tokens": ["background", "card", "card-foreground", "border", "muted-foreground", "radius"],
+  "category": "ui",
+  "description": "Composable surface container for grouped content"
+}

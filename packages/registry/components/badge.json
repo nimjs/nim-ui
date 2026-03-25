@@ -1,0 +1,8 @@
+{
+  "name": "badge",
+  "files": ["badge.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "tokens": ["primary", "primary-foreground", "secondary", "secondary-foreground", "accent", "accent-foreground", "border", "ring"],
+  "category": "ui",
+  "description": "Compact status and metadata label"
+}

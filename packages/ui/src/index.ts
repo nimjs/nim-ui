@@ -1,9 +1,7 @@
-export { Badge, badgeVariants, type BadgeProps } from './components/badge';
-export {
-  Button,
-  buttonVariants,
-  type ButtonProps,
-} from './components/button';
+export { Badge, badgeVariants } from './components/badge';
+export type { BadgeProps } from './components/badge';
+export { Button, buttonVariants } from './components/button';
+export type { ButtonProps } from './components/button';
 export {
   Card,
   CardContent,
@@ -12,4 +10,5 @@ export {
   CardHeader,
   CardTitle,
 } from './components/card';
-export { Input, type InputProps } from './components/input';
+export { Input } from './components/input';
+export type { InputProps } from './components/input';

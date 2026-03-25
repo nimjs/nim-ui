@@ -1,8 +1,10 @@
 import { existsSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { CONFIG_FILE_NAME, defaultConfig } from '../config/resolve-config';
+import { defaultConfig } from '../config/resolve-config';
 import { log } from '../lib/output';
+
+const CONFIG_FILE_NAME = 'nim-ui.config.ts';
 
 export function runInit(cwd: string) {
   const destination = join(cwd, CONFIG_FILE_NAME);
@@ -12,7 +14,11 @@ export function runInit(cwd: string) {
     return;
   }
 
-  writeFileSync(destination, `${JSON.stringify(defaultConfig, null, 2)}\n`, 'utf8');
+  writeFileSync(
+    destination,
+    `export default {\n  componentsDir: '${defaultConfig.componentsDir}',\n  tokens: ${String(defaultConfig.tokens)},\n};\n`,
+    'utf8',
+  );
 
   log(`Created ${CONFIG_FILE_NAME}`);
   log('Next steps:');

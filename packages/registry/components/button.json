@@ -1,0 +1,8 @@
+{
+  "name": "button",
+  "files": ["button.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "tokens": ["primary", "primary-foreground", "radius", "ring", "secondary", "border"],
+  "category": "ui",
+  "description": "Primary action trigger"
+}

@@ -1,15 +1,10 @@
-export interface NimUiConfig {
-  registry: string;
+export interface NimUiUserConfig {
+  componentsDir?: string;
+  tokens?: boolean;
+}
+
+export interface NimUiResolvedConfig {
   componentsDir: string;
-  style: 'default';
-  tsx: boolean;
-  tailwind: {
-    config: string;
-    css: string;
-    cssVariables: boolean;
-  };
-  aliases: {
-    components: string;
-    utils: string;
-  };
+  configPath: string | null;
+  tokens: boolean;
 }

@@ -11,6 +11,7 @@ export const themingPage: DocPage = {
       title: 'Token layers',
       paragraphs: [
         'Primitive colors live in the tokens package under brand, accent, neutral, and semantic groups. Applications consume semantic variables such as background, card, and primary instead of raw brand values.',
+        'The pipeline in this repository is explicit: registry metadata points to semantic tokens, the tokens package maps them to CSS variables, the UI package consumes those variables, and the docs app demonstrates the same system without a separate theme fork.',
       ],
       codeBlocks: [
         {
@@ -41,6 +42,19 @@ export const themingPage: DocPage = {
           label: 'Tailwind color mapping',
           language: 'tsx',
           code: `colors: {\n  background: 'var(--background)',\n  foreground: 'var(--foreground)',\n  primary: 'var(--primary)',\n  'primary-foreground': 'var(--primary-foreground)'\n}`,
+        },
+      ],
+    },
+    {
+      title: 'End-to-end pipeline',
+      paragraphs: [
+        'The docs are not a disconnected marketing surface. Each component page carries typed metadata that mirrors the registry, so tokens and dependencies shown in docs stay aligned with the component ecosystem contract.',
+      ],
+      codeBlocks: [
+        {
+          label: 'Pipeline',
+          language: 'bash',
+          code: `registry -> docs meta -> design tokens -> CSS variables -> @nim-ui/ui -> docs and consumer apps`,
         },
       ],
     },

@@ -2,11 +2,12 @@
   "name": "@nim-ui/eslint-config",
   "version": "0.0.0",
   "private": true,
-  "main": "base.cjs",
+  "type": "module",
+  "main": "./base.js",
   "exports": {
-    "./base": "./base.cjs",
-    "./react-library": "./react-library.cjs",
-    "./next": "./next.cjs"
+    "./base": "./base.js",
+    "./react-library": "./react-library.js",
+    "./next": "./next.js"
   },
   "peerDependencies": {
     "eslint": "^9.0.0"

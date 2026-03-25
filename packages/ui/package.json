@@ -44,7 +44,7 @@
     "build": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --clean --external react,react-dom",
     "clean": "rm -rf dist coverage",
     "dev": "tsup src/index.ts src/components/button/index.ts src/components/input/index.ts src/components/card/index.ts src/components/badge/index.ts --dts --format esm,cjs --watch --external react,react-dom",
-    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint src --ext .ts,.tsx",
+    "lint": "eslint src --ext .ts,.tsx",
     "test": "vitest run",
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },

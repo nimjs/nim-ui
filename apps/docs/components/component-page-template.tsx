@@ -1,4 +1,3 @@
-
 import { CodeBlock } from './code-block';
 import { ComponentPreview } from './component-preview';
 
@@ -33,6 +32,53 @@ export function ComponentPageTemplate({ page }: { page: ComponentPage }) {
           Usage
         </h2>
         <CodeBlock code={page.code} label={`${page.title} example`} language="tsx" />
+      </section>
+
+      <section className="space-y-5">
+        <h2 className="font-display text-3xl font-semibold">
+          System metadata
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-[1.25rem] border border-border bg-white p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-red)]">
+              Registry
+            </p>
+            <p className="mt-3 text-lg font-semibold">{page.meta.registry}</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Category: {page.manifest.category}
+            </p>
+          </div>
+          <div className="rounded-[1.25rem] border border-border bg-white p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-red)]">
+              Tokens
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {page.meta.tokens.map((token) => (
+                <span
+                  className="rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground"
+                  key={token}
+                >
+                  {token}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[1.25rem] border border-border bg-white p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-brand-red)]">
+              Dependencies
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {page.meta.dependencies.map((dependency) => (
+                <span
+                  className="rounded-full border border-border px-3 py-1 text-xs font-medium text-foreground"
+                  key={dependency}
+                >
+                  {dependency}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
       {page.sections.map((section) => (

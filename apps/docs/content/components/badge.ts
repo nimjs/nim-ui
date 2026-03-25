@@ -1,10 +1,16 @@
-import type { ComponentPage } from '../types';
+import { createComponentPage, defineComponentMeta } from '../types';
 
-export const badgePage: ComponentPage = {
-  slug: 'badge',
+export const meta = defineComponentMeta({
   title: 'Badge',
   description:
     'Badges provide compact labels for status, categorization, and lightweight emphasis.',
+  tokens: ['primary', 'primary-foreground', 'secondary', 'secondary-foreground', 'accent', 'accent-foreground', 'border', 'ring'],
+  dependencies: ['utils', 'tokens'],
+  registry: 'badge',
+});
+
+export const badgePage = createComponentPage(meta, {
+  slug: 'badge',
   eyebrow: 'Component',
   preview: 'badge',
   code: `import { Badge } from '@nim-ui/ui';\n\nexport function Example() {\n  return (\n    <div className="flex gap-2">\n      <Badge>Stable</Badge>\n      <Badge variant="secondary">Community</Badge>\n      <Badge variant="outline">Docs</Badge>\n    </div>\n  );\n}`,
@@ -16,4 +22,4 @@ export const badgePage: ComponentPage = {
       ],
     },
   ],
-};
+});

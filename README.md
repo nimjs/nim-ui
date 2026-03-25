@@ -6,6 +6,7 @@ tokens, releases, and governance into ad hoc tooling.
 
 The repository is intentionally structured as a product, not just a package:
 
+- `packages/registry` is the typed component registry shared by CLI and docs.
 - `packages/tokens` is the source of truth for design tokens and semantic themes.
 - `packages/ui` ships the baseline React component library.
 - `packages/utils` holds shared utilities with low abstraction overhead.
@@ -32,6 +33,7 @@ apps/
 packages/
   cli/                   CLI foundation for init/add workflows
   eslint-config/         Shared ESLint presets
+  registry/              Typed component manifests for docs and CLI
   tokens/                Design tokens, semantic themes, CSS variables
   tsconfig/              Shared TypeScript presets
   ui/                    React UI component package
@@ -45,6 +47,8 @@ tooling/                 Repo-level helper scripts and test setup
 
 - `@nim-ui/tokens`
   Primitive palette, semantic theme mapping, and exported CSS variables.
+- `@nim-ui/registry`
+  Typed component manifests, dependency metadata, and future registry surface.
 - `@nim-ui/ui`
   Baseline component library: `Button`, `Input`, `Card`, `Badge`.
 - `@nim-ui/utils`
@@ -123,6 +127,8 @@ ownership, domains, and environment configuration.
 
 The CLI package currently includes:
 
+- registry-driven component lookup
+- `nim-ui.config.ts` resolution with defaults
 - config resolution
 - `init`
 - local registry metadata
@@ -131,6 +137,20 @@ The CLI package currently includes:
 
 Future work can layer remote registry manifests, project adapters, and canary
 channels on top of the existing package boundaries without rewriting the CLI.
+
+## Canary Releases
+
+Canary publishing is intentionally not wired into default automation yet, but the
+repository is ready for it through Changesets pre mode. A practical next step is
+to add maintainer scripts for:
+
+- `changeset pre enter canary`
+- `changeset version`
+- `changeset publish --tag canary`
+- `changeset pre exit`
+
+That approach keeps stable releases and canary channels separate without forcing
+extra complexity into the default OSS workflow.
 
 ## Open-Source Baseline
 

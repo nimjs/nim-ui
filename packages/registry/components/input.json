@@ -1,0 +1,8 @@
+{
+  "name": "input",
+  "files": ["input.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "tokens": ["background", "foreground", "input", "muted-foreground", "radius", "ring"],
+  "category": "forms",
+  "description": "Form field primitive with semantic focus styles"
+}
