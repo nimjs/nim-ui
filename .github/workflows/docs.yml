@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - apps/docs/**
+      - packages/registry/**
       - packages/ui/**
       - packages/tokens/**
       - packages/utils/**
@@ -15,6 +16,7 @@ on:
       - main
     paths:
       - apps/docs/**
+      - packages/registry/**
       - packages/ui/**
       - packages/tokens/**
       - packages/utils/**

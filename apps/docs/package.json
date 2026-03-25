@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "build:pages": "GITHUB_PAGES=true next build",
     "clean": "rm -rf .next coverage",
     "dev": "next dev",
     "lint": "eslint app components content lib mdx-components.tsx --ext .ts,.tsx",

@@ -5,6 +5,10 @@
       "dependsOn": ["^build", "typecheck"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "build:pages": {
+      "dependsOn": ["^build", "typecheck"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "out/**"]
+    },
     "dev": {
       "dependsOn": ["^dev"],
       "cache": false,
