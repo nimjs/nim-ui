@@ -1,177 +1,314 @@
+[![CI](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/ci.yml?branch=main&label=ci)](https://github.com/nimjs/nim-ui/actions/workflows/ci.yml)
+[![Docs](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/docs.yml?branch=main&label=docs)](https://github.com/nimjs/nim-ui/actions/workflows/docs.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-white.svg)](./LICENSE)
+[![pnpm](https://img.shields.io/badge/pnpm-9.15.4-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Turborepo](https://img.shields.io/badge/turbo-monorepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/repo)
+[![TypeScript](https://img.shields.io/badge/typescript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
 # Nim UI
 
-Nim UI is an open-source UI ecosystem monorepo built for organizations that want
-the developer experience of a modern component system without coupling docs,
-tokens, releases, and governance into ad hoc tooling.
+>"_I don't understand what I can't create_".
 
-The repository is intentionally structured as a product, not just a package:
+Open-source component ecosystem by `nimjs` for teams that want more than a UI
+library: design tokens, typed component registry, CLI scaffolding, system-first
+docs, and release discipline in one production-ready monorepo.
 
-- `packages/registry` is the typed component registry shared by CLI and docs.
-- `packages/tokens` is the source of truth for design tokens and semantic themes.
-- `packages/ui` ships the baseline React component library.
-- `packages/utils` holds shared utilities with low abstraction overhead.
-- `packages/cli` lays the groundwork for future `init` and `add` workflows.
-- `apps/docs` is a Next.js App Router docs and demo experience.
-- `.github`, `.changeset`, and the policy files make release and contribution
-  workflows explicit from day one.
+Nim UI is inspired by the developer experience standards of modern component
+systems, but it is designed as an independent OSS product with explicit package
+boundaries, contributor-safe public APIs, and maintainable release mechanics.
 
-## Why this repo exists
+## Why Nim UI
 
-Nim UI is inspired by the experience quality of tools like shadcn-style
-ecosystems, but it is designed as an independent open-source project with:
+- Build and document UI primitives from the same system source of truth.
+- Keep tokens, docs, CLI, and components aligned through typed metadata.
+- Scale from a starter kit to an organization-owned design system foundation.
+- Give contributors clear package boundaries and maintainers clear release rules.
+- Stay portable: no private infrastructure assumptions, no vendor-locked repo architecture.
 
-- clear package boundaries
-- contributor-friendly architecture
-- maintainable release mechanics
-- room for future registry and CLI evolution
+## What You Get
 
-## Architecture Overview
+- `@nim-ui/tokens`
+  Design tokens, semantic themes, and CSS variables.
+- `@nim-ui/registry`
+  Typed component manifests shared by CLI and docs.
+- `@nim-ui/ui`
+  React component package with explicit public exports.
+- `@nim-ui/utils`
+  Shared helpers such as `cn()` and small DOM-safe utilities.
+- `@nim-ui/cli`
+  Registry-driven scaffolding foundation for `init` and `add`.
+- `@nim-ui/docs`
+  Next.js App Router docs and demo app.
+- OSS baseline
+  Changesets, CI/CD, governance, security policy, CODEOWNERS, templates, and Dependabot.
+
+## Architecture
 
 ```text
 apps/
-  docs/                  Next.js docs and demo app
+  docs/                  Next.js docs and demo application
 packages/
-  cli/                   CLI foundation for init/add workflows
-  eslint-config/         Shared ESLint presets
-  registry/              Typed component manifests for docs and CLI
-  tokens/                Design tokens, semantic themes, CSS variables
-  tsconfig/              Shared TypeScript presets
-  ui/                    React UI component package
+  cli/                   Registry-aware CLI foundation
+  eslint-config/         Shared ESLint flat configs
+  registry/              Typed component manifests
+  tokens/                Design tokens and semantic theme mappings
+  tsconfig/              Shared strict TypeScript presets
+  ui/                    React component package
   utils/                 Shared utility helpers
-tooling/                 Repo-level helper scripts and test setup
+tooling/                 Repo-level setup and support files
 .changeset/              Versioning and release notes
-.github/                 CI/CD, issue templates, automation
+.github/                 CI/CD workflows and contribution automation
 ```
 
-## Package Map
+## System Flow
 
-- `@nim-ui/tokens`
-  Primitive palette, semantic theme mapping, and exported CSS variables.
-- `@nim-ui/registry`
-  Typed component manifests, dependency metadata, and future registry surface.
-- `@nim-ui/ui`
-  Baseline component library: `Button`, `Input`, `Card`, `Badge`.
-- `@nim-ui/utils`
-  Shared helpers such as `cn()` and DOM-safe utilities.
-- `@nim-ui/cli`
-  Foundation for future local and registry-backed component scaffolding.
-- `@nim-ui/eslint-config`
-  Shared ESLint presets for library packages and Next.js apps.
-- `@nim-ui/tsconfig`
-  Shared strict TypeScript presets.
-- `@nim-ui/docs`
-  Documentation and demo application.
+Nim UI is structured as a system, not a gallery of unrelated packages.
+
+1. Tokens are defined in `@nim-ui/tokens`.
+2. Tokens map to semantic CSS variables consumed by UI components.
+3. Components are described in `@nim-ui/registry`.
+4. The CLI reads the registry to scaffold component files.
+5. Docs read the same registry metadata to explain tokens, dependencies, and usage.
+
+That pipeline keeps implementation, documentation, and scaffolding aligned as
+the ecosystem grows.
 
 ## Design Tokens And Theming
 
-The visual system starts from a palette inspired by the product brand and maps
-those primitives into semantic variables such as `--background`, `--foreground`,
-`--primary`, and `--card`. The light theme is implemented today, while the CSS
-variable structure already leaves room for a future dark theme.
+The theme layer is built around semantic CSS variables such as:
 
-Key rule: do not hardcode colors in packages or apps. Use semantic variables or
-token exports from `@nim-ui/tokens`.
+- `--background`
+- `--foreground`
+- `--card`
+- `--border`
+- `--primary`
+- `--primary-foreground`
+- `--accent`
+- `--ring`
+- `--destructive`
 
-## Local Development
+The current baseline ships with a light theme and a CSS variable architecture
+ready for dark-theme expansion. UI code should consume semantic variables, not
+raw color literals.
+
+Relevant sources:
+
+- [packages/tokens/src/colors.ts](./packages/tokens/src/colors.ts)
+- [packages/tokens/src/themes/light.ts](./packages/tokens/src/themes/light.ts)
+- [packages/tokens/src/css/variables.css](./packages/tokens/src/css/variables.css)
+
+## Component Registry
+
+The registry package is the ecosystem contract between implementation, docs, and
+CLI.
+
+Each component manifest declares:
+
+- component name
+- source files
+- system dependencies
+- semantic tokens
+- category
+- description
+
+Example:
+
+```json
+{
+  "name": "button",
+  "files": ["button.tsx"],
+  "dependencies": ["utils", "tokens"],
+  "tokens": ["primary", "primary-foreground", "ring", "radius"],
+  "category": "ui",
+  "description": "Primary action trigger"
+}
+```
+
+This gives maintainers one place to evolve component metadata without teaching
+docs and CLI different models.
+
+## CLI Foundation
+
+The CLI is intentionally small but production-oriented.
+
+Current capabilities:
+
+- `init`
+- `add <component>`
+- `nim-ui.config.ts` resolution with sensible defaults
+- registry-driven template lookup
+- basic dependency reporting
+- friendly validation and error messages
+
+Default config:
+
+```ts
+export default {
+  componentsDir: "src/components/ui",
+  tokens: true,
+};
+```
+
+The current design is ready for future registry fetches, adapters, and canary
+channels without rewriting package boundaries.
+
+## Docs Experience
+
+The docs app is a product surface, not a sidecar demo.
+
+It includes:
+
+- landing page
+- getting started docs
+- installation guide
+- theming guide
+- components index
+- dedicated component pages
+- demo/code blocks
+- registry-backed metadata for tokens and dependencies
+
+Each component page exports typed metadata so the docs system can grow toward
+auto-generated sections without losing author control.
+
+## Public API Discipline
+
+Nim UI follows explicit exports by default.
+
+- No `export *` from package roots.
+- No accidental deep internal exports.
+- Subpath exports are intentional and tree-shaking friendly.
+- Public API changes should be additive unless explicitly approved otherwise.
+
+This helps maintainers keep package contracts stable as the ecosystem grows.
+
+## Getting Started
+
+Requirements:
+
+- Node.js 20.11+
+- pnpm 9.15.4
+
+Install dependencies:
 
 ```bash
 pnpm install
+```
+
+Start the docs app in development:
+
+```bash
 pnpm dev
 ```
 
-Useful commands:
+Useful workspace commands:
 
 ```bash
 pnpm lint
-pnpm test
 pnpm typecheck
+pnpm test
 pnpm build
 pnpm changeset
 ```
 
-`pnpm dev` runs the docs app together with watch builds for its workspace
-dependencies via Turborepo.
+## Development Workflows
+
+### Add A New Component
+
+1. Create `packages/ui/src/components/<component>/`.
+2. Export the component explicitly from `packages/ui/src/index.ts`.
+3. Add a subpath export in `packages/ui/package.json` if needed.
+4. Add a registry manifest in `packages/registry/components/`.
+5. Add or update docs content in `apps/docs/content/components/`.
+6. Add tests when behavior or accessibility are non-trivial.
+7. Add a changeset for user-facing package changes.
+
+### Validate The Repo
+
+```bash
+pnpm turbo run lint typecheck test build
+```
+
+This is the same baseline validated by the main CI workflow.
 
 ## Release Flow
 
-Releases are managed through Changesets.
+Releases are managed with Changesets.
 
 1. Contributors add a changeset for user-facing package changes.
-2. Maintainers merge the changes into `main`.
-3. The release workflow opens or updates a release PR.
-4. Merging the release PR triggers versioning and npm publication.
+2. Changes land on `main`.
+3. The release workflow creates or updates a release PR.
+4. Merging the release PR versions packages and publishes to npm.
 
-This keeps semantic release intent in git history and makes breaking changes
-reviewable before publish.
+Why this model works well for OSS:
 
-## Contribution Flow
+- release intent is reviewed in git
+- breaking changes stay explicit
+- maintainers avoid ad hoc local publishing
+- multi-package versioning stays understandable to contributors
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for branch expectations, naming
-conventions, API compatibility policy, and the component authoring workflow.
+### Canary Releases
 
-See [GOVERNANCE.md](./GOVERNANCE.md) for maintainer roles and architectural
-decision rules.
+Canary publishing is not enabled by default, but the repository is ready for it
+through Changesets pre mode.
 
-## Docs Deployment
+Recommended canary flow:
 
-The repository is Vercel-friendly by default. The `docs.yml` workflow validates
-the docs build in CI without coupling the project to a specific deployment
-secret or preview provider. This keeps the repository portable while fitting the
-Next.js App Router well.
+```bash
+pnpm changeset pre enter canary
+pnpm version-packages
+pnpm release --tag canary
+pnpm changeset pre exit
+```
 
-PR preview deployment is intentionally not included in baseline automation
-because the cleanest implementation is usually provider-native and tied to repo
-ownership, domains, and environment configuration.
+## CI And Deployment
 
-## CLI Roadmap
+GitHub Actions cover:
 
-The CLI package currently includes:
+- repository validation
+- docs build validation
+- release automation
+- dependency review
+- CodeQL analysis
 
-- registry-driven component lookup
-- `nim-ui.config.ts` resolution with defaults
-- config resolution
-- `init`
-- local registry metadata
-- `add <component>`
-- template scaffolding
+The docs app is Vercel-friendly by default. The repository validates docs builds
+in CI without hard-coupling deployment to a provider-specific preview setup.
 
-Future work can layer remote registry manifests, project adapters, and canary
-channels on top of the existing package boundaries without rewriting the CLI.
+## Open-Source Governance
 
-## Canary Releases
+Nim UI is structured for public maintenance from the start.
 
-Canary publishing is intentionally not wired into default automation yet, but the
-repository is ready for it through Changesets pre mode. A practical next step is
-to add maintainer scripts for:
+- [CONTRIBUTING.md](./CONTRIBUTING.md)
+- [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
+- [SECURITY.md](./SECURITY.md)
+- [SUPPORT.md](./SUPPORT.md)
+- [GOVERNANCE.md](./GOVERNANCE.md)
 
-- `changeset pre enter canary`
-- `changeset version`
-- `changeset publish --tag canary`
-- `changeset pre exit`
+These files are part of the product surface. They define how contributors work
+in the repo, how maintainers make decisions, and how releases stay safe.
 
-That approach keeps stable releases and canary channels separate without forcing
-extra complexity into the default OSS workflow.
+## Who This Repo Is For
 
-## Open-Source Baseline
+- teams building an OSS or internal design system foundation
+- maintainers who want docs, tokens, and release flow designed up front
+- contributors who prefer explicit architecture over hidden repo conventions
+- product organizations that need a scalable component ecosystem, not just components
 
-This repository includes:
+## Roadmap Direction
 
-- code of conduct
-- contribution and governance policy
-- security policy
-- support guidance
-- issue and PR templates
-- CODEOWNERS
-- Dependabot configuration
-- CI, docs validation, release automation, dependency review, and CodeQL
+Near-term evolution paths that fit the current architecture:
 
-Before publishing, make sure the GitHub teams and contact channels you use under
-the `nimjs` organization match your actual maintainer setup.
+- richer registry metadata for layouts, forms, and patterns
+- remote registry distribution for CLI consumers
+- more generated docs sections from typed component metadata
+- canary release automation
+- broader component coverage with stable public export discipline
+
+## Contributing
+
+Start with [CONTRIBUTING.md](./CONTRIBUTING.md). For architectural or
+cross-package changes, also read [GOVERNANCE.md](./GOVERNANCE.md) before opening
+large pull requests.
 
 ## License
 
-This scaffold defaults to MIT for ease of adoption in a component ecosystem. MIT
-keeps contribution and downstream usage simple, but it provides fewer explicit
-patent guarantees than Apache-2.0. If the organization expects a stronger
-patent position, evaluate Apache-2.0 or a dual-license policy before the first
-public release.
+[MIT](./LICENSE)
