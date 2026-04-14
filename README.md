@@ -1,13 +1,11 @@
+# Nim UI
+
 [![CI](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/ci.yml?branch=main&label=ci)](https://github.com/nimjs/nim-ui/actions/workflows/ci.yml)
 [![Docs](https://img.shields.io/github/actions/workflow/status/nimjs/nim-ui/docs.yml?branch=main&label=docs)](https://github.com/nimjs/nim-ui/actions/workflows/docs.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-white.svg)](./LICENSE)
 [![pnpm](https://img.shields.io/badge/pnpm-9.15.4-F69220?logo=pnpm&logoColor=white)](https://pnpm.io/)
 [![Turborepo](https://img.shields.io/badge/turbo-monorepo-EF4444?logo=turborepo&logoColor=white)](https://turbo.build/repo)
 [![TypeScript](https://img.shields.io/badge/typescript-strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-
-# Nim UI
-
->"_I don't understand what I can't create_".
 
 Open-source component ecosystem by `nimjs` for teams that want more than a UI
 library: design tokens, typed component registry, CLI scaffolding, system-first
